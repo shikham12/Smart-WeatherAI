@@ -342,7 +342,7 @@ class DynamicWeatherChatbot:
     """Advanced weather chatbot that uses real-time data for specific locations"""
     
     def __init__(self):
-        self.openweather_key = os.getenv("OPENWEATHER_API_KEY", "fa3cf0f59b50581ae23ac3446a1bceba")
+        self.openweather_key = os.getenv("OPENWEATHER_API_KEY", "YOUR_WEATHER_API_KEY")
         self.geolocator = Nominatim(user_agent="dynamic-weather-chatbot", timeout=10)
     
     def get_weather_for_location(self, location_name):
@@ -860,3 +860,4 @@ def predict_next_temp(weather_data):
     model = LinearRegression().fit(X, y)
     pred = model.predict([[len(temps)]])[0]
     return round(pred, 2)
+
