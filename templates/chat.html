@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4 class="card-title mb-3">Ask SmartWeatherAI</h4>
+        <form method="post" class="mb-3">
+            <textarea class="form-control form-control-lg rounded-3" name="message"
+                placeholder="Ask about weather, travel, or what to wear..." rows="3"></textarea>
+            <div class="d-flex justify-content-end mt-2">
+                <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill me-1"></i> Ask</button>
+            </div>
+        </form>
+
+        {% if answer %}
+        <hr>
+        <div class="ai-response">
+            <h6 class="text-muted">AI Assistant Response</h6>
+            <div class="mt-2 p-3 bg-light rounded">
+                <p class="mb-0">{{ answer }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

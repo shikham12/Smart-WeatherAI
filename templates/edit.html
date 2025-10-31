@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Edit Weather Record #{{ rec.id }}</h4>
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Location</label>
+                        <input class="form-control form-control-lg" name="location" value="{{ rec.user_input }}">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Start Date</label>
+                                <input class="form-control" type="date" name="start_date" value="{{ rec.start_date }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">End Date</label>
+                                <input class="form-control" type="date" name="end_date" value="{{ rec.end_date }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-outline-secondary" href="{{ url_for('view', id=rec.id) }}">Cancel</a>
+                        <button class="btn btn-primary px-4" type="submit">
+                            <i class="bi bi-check-lg"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

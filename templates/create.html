@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Create Weather Query</h4>
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Location</label>
+                        <input class="form-control form-control-lg" name="location"
+                            placeholder="e.g., New York, 10001, Eiffel Tower, 48.8584,2.2945">
+                        <div class="form-text">Enter city, zip code, landmark, or coordinates</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Start Date</label>
+                                <input class="form-control" type="date" name="start_date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">End Date</label>
+                                <input class="form-control" type="date" name="end_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-secondary" id="use-location" type="button">
+                            <i class="bi bi-geo-alt"></i> Use Current Location
+                        </button>
+                        <button class="btn btn-primary px-4" type="submit">
+                            <i class="bi bi-cloud-download"></i> Fetch Weather
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("use-location").addEventListener("click", function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async function (pos) {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                // call backend to reverse geocode or get weather preview
+                const resp = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
+                const data = await resp.json();
+                // set the form location field to lat,lon and submit automatically (user can edit)
+                const locInput = document.querySelector('input[name="location"]');
+                locInput.value = `${lat},${lon}`;
+                // automatically scroll to Save button so user can submit
+            }, function (err) {
+                alert("Could not get location: " + err.message);
+            });
+        } else {
+            alert("Geolocation not supported.");
+        }
+    });
+</script>
+{% endblock %}
