@@ -152,3 +152,10 @@ The Docker configuration enables reproducible builds, secure environment handlin
 
 This project is open-source under the [MIT License](LICENSE).
 
+---
+
+## Demo Video
+
+A short walkthrough showcasing SmartWeatherAI’s features, including AI summarization, forecasting, chatbot interaction, and visualization.
+
+[Watch Demo](https://drive.google.com/file/d/1bilys5bAhBOIKQR8wLYPwqAkkGNmFvZw/view?usp=sharing)
